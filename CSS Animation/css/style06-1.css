@@ -1,0 +1,88 @@
+@charset "UTF-8";
+
+/* 호버 에니메이션 01-1 */
+body {
+  height: 100vh;
+  background: #0f2027;
+  background-image: linear-gradient(360deg, #ffcc00, #b5a151);
+  font-family: 'Noto Serif KR', serif;
+}
+.hover_wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+.hover_wrap figure {
+  position: relative;
+  width: 400px;
+  margin: 10px;
+  cursor: pointer;
+  overflow: hidden;
+}
+.hover_wrap figure img {
+  width: 100%;
+  display: block;
+  border-radius: 4px;
+}
+.hover_wrap figcaption {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.44);
+  width: 100%;
+  color: #fc04e8;
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 0 0 4px 4px;
+}
+.hover_wrap figcaption h3 {
+  font-size: 24px;
+  padding-bottom: 7px;
+  font-weight: 700;
+}
+.hover_wrap figcaption p {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+@media (max-width: 700px) {
+  .hover_wrap {
+    flex-direction: column;
+  }
+}
+
+/* 호버 이펙트1 */
+.hover_wrap figure.hover1 {
+  transition: 0.8s;
+}
+.hover_wrap figure.hover1 figcaption {
+  opacity: 0;
+  transition: opacity 0.33s ease-in-out;
+}
+.hover_wrap figure.hover1:hover img {
+  transform: rotate(180deg) scale(2.0);
+}
+.hover_wrap figure.hover1:hover figcaption {
+  opacity: 1;
+  transform: rotate(40deg);
+}
+
+/* 호버 이펙트2 */
+.hover_wrap figure.hover2 {
+  transition: 0.3s;
+}
+.hover_wrap figure.hover2 figcaption {
+  opacity: 0;
+  transition: opacity 0.3ss ease-in-out, bottom 0.33s ease;
+  bottom: -100px;
+}
+.hover_wrap figure.hover2:hover img {
+  transform: rotate(90deg) scale(1.4);
+}
+.hover_wrap figure.hover2:hover figcaption {
+  opacity: 1;
+  bottom: 0;
+  transform: rotate(180deg);
+}
+
