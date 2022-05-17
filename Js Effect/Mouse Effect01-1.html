@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>Mouse Effect01 - JQuery</title>
+  <title>Mouse Effect01-1 - JavaScript</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
@@ -238,7 +238,7 @@
   <div class="info">
     <h1>
       <a href="index.html">
-        Mouse Effect01 - jQuery
+        Mouse Effect01 - JavaScript
       </a>
     </h1>
     <p>
@@ -350,92 +350,96 @@
   <!-- //info -->
   
   <!-- script -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
   <script>
     // output
-    $(window).mousemove(function(event){
-      $(".clientX").text(event.clientX);
-      $(".clientY").text(event.clientY);
-      $(".offsetX").text(event.clientX);
-      $(".offsetY").text(event.clientY);
-      $(".pageX").text(event.pageX);
-      $(".pageY").text(event.pageY);
-      $(".screenX").text(event.screenX);
-      $(".screenY").text(event.screenY);
+    window.addEventListener("mousemove", function(event){
+      document.querySelector(".clientX").innerText = event.clientX;
+      document.querySelector(".clientY").innerText = event.clientY;
+      document.querySelector(".offsetX").innerText = event.offsetX;
+      document.querySelector(".offsetY").innerText = event.offsetY;
+      document.querySelector(".pageX").innerText = event.pageX;
+      document.querySelector(".pageY").innerText = event.pageY;
+      document.querySelector(".screenX").innerText = event.screenX;
+      document.querySelector(".screenY").innerText = event.screenY;
     });
     
     // mouse move
-    $(window).mousemove(function(e){
-      // $(".cursor").css("left", "100px");
-      // $(".cursor").css("top", "100px");
-      // $(".cursor").css({left: 100},{top: 100});
-      $(".cursor").css({left: e.clientX - 25, top: e.clientY - 25});
+    window.addEventListener("mousemove", function(e){ document.querySelector(".cursor").style.left = e.clientX - 25 + "px";
+      document.querySelector(".cursor").style.top = e.clientY - 25 + "px";
+      
+      let x = e.clientX - 25 + "px";
+      let y = e.clientY - 25 + "px";
+      document.querySelector(".cursor").style.cssText = "left:"+x+"; top:" + y;
     });
     
-    // mouse over effect
     /*
-    $(".mouseCont .style1").hover(function(){
-      $(".cursor").addClass("style1");
-    }, function(){
-      $(".cursor").removeClass("style1");
+    document.querySelector(".mouseCont .style1").addEventListener("mouseover", function(){
+      document.querySelector(".cursor").classList.add("style1");
     });
-    
-    $(".mouseCont .style2").hover(function(){
-      $(".cursor").addClass("style2");
-    }, function(){
-      $(".cursor").removeClass("style2");
+    document.querySelector(".mouseCont .style1").addEventListener("mouseout", function(){
+      document.querySelector(".cursor").classList.remove("style1");
     });
-    
-    $(".mouseCont .style3").hover(function(){
-      $(".cursor").addClass("style3");
-    }, function(){
-      $(".cursor").removeClass("style3");
+    document.querySelector(".mouseCont .style2").addEventListener("mouseover", function(){
+      document.querySelector(".cursor").classList.add("style2");
     });
-    
-    $(".mouseCont .style4").hover(function(){
-      $(".cursor").addClass("style4");
-    }, function(){
-      $(".cursor").removeClass("style4");
+    document.querySelector(".mouseCont .style2").addEventListener("mouseout", function(){
+      document.querySelector(".cursor").classList.remove("style2");
     });
-    
-    $(".mouseCont .style5").hover(function(){
-      $(".cursor").addClass("style5");
-    }, function(){
-      $(".cursor").removeClass("style5");
+    document.querySelector(".mouseCont .style3").addEventListener("mouseover", function(){
+      document.querySelector(".cursor").classList.add("style3");
     });
-    
-    $(".mouseCont .style6").hover(function(){
-      $(".cursor").addClass("style6");
-    }, function(){
-      $(".cursor").removeClass("style6");
+    document.querySelector(".mouseCont .style3").addEventListener("mouseout", function(){
+      document.querySelector(".cursor").classList.remove("style3");
+    });
+    document.querySelector(".mouseCont .style4").addEventListener("mouseover", function(){
+      document.querySelector(".cursor").classList.add("style4");
+    });
+    document.querySelector(".mouseCont .style4").addEventListener("mouseout", function(){
+      document.querySelector(".cursor").classList.remove("style4");
+    });
+    document.querySelector(".mouseCont .style5").addEventListener("mouseover", function(){
+      document.querySelector(".cursor").classList.add("style5");
+    });
+    document.querySelector(".mouseCont .style5").addEventListener("mouseout", function(){
+      document.querySelector(".cursor").classList.remove("style5");
+    });
+    document.querySelector(".mouseCont .style6").addEventListener("mouseover", function(){
+      document.querySelector(".cursor").classList.add("style6");
+    });
+    document.querySelector(".mouseCont .style6").addEventListener("mouseout", function(){
+      document.querySelector(".cursor").classList.remove("style6");
     });
     */
     
     /*
     for(let i = 1; i <= 6; i++) {
-      $(".mouseCont .style" + i).hover(function(){
-        $(".cursor").addClass("style" + i);
-      }, function(){
-        $(".cursor").removeClass("style" + i);
+      document.querySelector(".mouseCont .style"+i).addEventListener("mouseover", function(){
+        document.querySelector(".cursor").classList.add("style"+i);
+      });
+      document.querySelector(".mouseCont .style"+i).addEventListener("mouseout", function(){
+        document.querySelector(".cursor").classList.remove("style"+i);
       });
     }
     */
     
-    /*
-    $(".mouseCont span").each(function(index, element){
-      $(element).hover(function(){
-        $(".cursor").addClass("style" + (index + 1));
-      }, function(){
-        $(".cursor").removeClass("style" + (index + 1));
+   /* document.querySelectorAll(".mouseCont span").forEach((element, index) => {
+      element.addEventListener("mouseover", () => {
+        document.querySelector(".cursor").classList.add("style"+(index+1));
+      });
+      element.addEventListener("mouseout", function(){
+        document.querySelector(".cursor").classList.remove("style"+(index+1));
       });
     });
     */
     
-    $(".mouseCont span").hover(function(){
-      $(".cursor").addClass($(this).attr("class"));
-    }, function(){
-      $(".cursor").removeClass($(this).attr("class"));
+    document.querySelectorAll(".mouseCont span").forEach(element => {
+      let style = element.getAttribute("class");
+      element.addEventListener("mouseover", () => {
+        document.querySelector(".cursor").classList.add(style);
+      });
+      element.addEventListener("mouseout", () => {
+        document.querySelector(".cursor").classList.remove(style);
+      });
     });
   </script>
   <!-- //script -->
