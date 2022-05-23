@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mouse Effect04 - JQuery</title>
+  <title>Mouse Effect04-1 - JavaScript</title>
   <style>
     @font-face {
       font-family: 'NEXONLv1Gothic';
@@ -40,7 +40,7 @@
     .bg {
       position: relative;
       height: 100vh;
-      background-image: url(https://webstoryboy.github.io/ScriptEffect/webstoryboy/assets/img/bg10@2.jpg);
+      background-image: url(https://webstoryboy.github.io/ScriptEffect/webstoryboy/assets/img/bg16@2.jpg);
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -192,7 +192,7 @@
   <div class="info">
     <h1>
       <a href="index.html">
-        Mouse Effect04 - jQuery
+        Mouse Effect04 - javaScript
       </a>
     </h1>
     <p>
@@ -276,19 +276,25 @@
   <!-- //info -->
   
   <!-- script -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
   <script>
-    const width = $(".cursor").width() / 2;
-    const height = $(".cursor").height() / 2;
+    const cursor = document.querySelector(".cursor");
+    /*
+    const width = cursor.offsetWidth;
+    const width = cursor.clientWidth;
+    */
     
-    $(window).mousemove(function(e){
-      gsap.to(".cursor", {duration: 0.5, left: e.pageX - width, top: e.pageY - height});
+    const circle = cursor.getBoundingClientRect();
+    
+    
+    function follow(e) {
+      gsap.to(cursor, {duration: 0.3, left: e.pageX - circle.width / 2, top: e.pageY - circle.height / 2});
       
       // output
-      $(".pageX").text(e.pageX + "px");
-      $(".pageY").text(e.pageY + "px");
-    });
+      document.querySelector(".pageX").innerText = e.pageX + "px";
+      document.querySelector(".pageY").innerText = e.pageY + "px";
+    }
+    window.addEventListener("mousemove", follow);
   </script>
   <!-- //script -->
   
