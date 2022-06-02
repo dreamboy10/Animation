@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slider Effect</title>
+  <style>
+    @font-face { 
+      font-family: 'MapoFlowerIsland'; 
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoFlowerIslandA.woff') format('woff'); 
+      font-weight: normal; 
+      font-style: normal; 
+    }
+    
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    a {
+      text-decoration: none;
+      color: #ffffff;
+      transition: all 0.2s;
+    }
+    
+    a:hover {
+      border-bottom: 1px dashed #ffffff;
+    }
+    
+    img {
+      width: 100%;
+      vertical-align: top;
+    }
+    
+    ul {
+      padding: 10px 20px;
+    }
+    
+    ul li {
+      list-style: none;
+    }
+    
+    body {
+      background: url(https://webstoryboy.github.io/wtss/refer-effect/assets/img/su10.jpg) no-repeat center center;
+      background-size: cover;
+      color: #ffffff;
+      height: 100vh;
+      transition: all 0.2s;
+      overflow: hidden;
+      font-size: 16px;
+      line-height: 1.5;
+      font-family: 'MapoFlowerIsland';
+    }
+    
+    body::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100vh;
+      background: rgba(50, 37, 11, 0.9);
+      z-index: -1;
+    }
+
+    /* info */
+    .info {
+      position: absolute;
+      z-index: 1000;
+    }
+    .info.right {
+      right: 10px;
+      top: 10px;
+    }
+    .info.right a {
+      display: inline-block;
+      margin-left: 5px;
+      width: 20px; 
+      height: 20px;
+      border: 1px dashed #ffffff;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 20px;
+      font-size: 12px;
+      transition: all 0.2s;
+    }
+    .info.right a:hover {
+      background: #ffffff;
+      color: #000000;
+    }
+    .info h1 {
+      font-size: 20px;
+      border-bottom: 1px dashed #ffffff;
+      margin-bottom: 8px;
+    }
+    .info h1 a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 400;
+    }
+    .info p, .info li {
+      font-size: 14px;
+      line-height: 1.8;
+      margin-bottom: 3px;
+    }
+    .info li a {
+      display: inline-block;
+      text-decoration: none;
+      color: #ffffff;
+      border: 1px dashed #ffffff;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      line-height: 21px;
+      text-align: center;
+      font-size: 12px;
+      margin-bottom: 5px;
+    }
+    .info li.active a:first-child {
+      background: #ffffff;
+      color: #000000;
+    }
+    .info.left {
+      left: 20px;
+      top: 20px;
+    }
+    .info.bottom {
+      left: 10px;
+      bottom: 10px;
+    }
+
+    .info.view {
+      right: 20px;
+      bottom: 20px;
+    }
+
+    .info.view a {
+      color: #ffffff;
+      border: 1px solid #ffffff;
+      border-radius: 30px;
+      padding: 5px 30px;
+    }
+    
+    @media (max-width: 800px){
+      .info.bottom {
+        display: none;
+      }
+      .info.right {
+        display: none;
+      }
+    }
+    
+    /* slider */
+    .slider-wrap {
+      height: 100vh;
+    }
+    .slider-img {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 1000px;
+      height: 100vh;
+      height: 600px;
+      overflow: hidden;
+      box-shadow: 4px 4px 20px rgba(0, 0, 0,0.5);
+    }
+    .slider-img {
+      position: relative;
+      width: 5000px;
+      height: 600px;
+      overflow: hidden;
+    }
+    .slider-img .slider {
+      float: left;
+      width: 1000px;
+      height: 600px;
+      position: relative;
+    }
+    .slider-img .slider span {
+      position: absolute;
+      left: 5px;
+      top: 5px;
+    }
+  </style>
+</head>
+<body>
+   
+  <!-- main -->
+  <main>
+    <div class="slider-wrap">
+      <div class="slider-img">
+        <div class="slider-inner">
+          <div class="slider">
+            <img src="https://webstoryboy.github.io/wtss/refer-effect/assets/img/su01.jpg" alt="이미지1">
+            <span>
+              이미지1
+            </span>
+          </div>
+          <div class="slider">
+            <img src="https://webstoryboy.github.io/wtss/refer-effect/assets/img/su02.jpg" alt="이미지2">
+            <span>
+              이미지2
+            </span>
+          </div>
+          <div class="slider">
+            <img src="https://webstoryboy.github.io/wtss/refer-effect/assets/img/su03.jpg" alt="이미지3">
+            <span>
+              이미지3
+            </span>
+          </div>
+          <div class="slider">
+            <img src="https://webstoryboy.github.io/wtss/refer-effect/assets/img/su04.jpg" alt="이미지4">
+            <span>
+              이미지4
+            </span>
+          </div>
+          <div class="slider">
+            <img src="https://webstoryboy.github.io/wtss/refer-effect/assets/img/su05.jpg" alt="이미지5">
+            <span>
+              이미지5
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <!-- //main -->
+
+    <!-- info -->
+    <div class="info">
+      <h1>
+        <a href="Slider%20Effect03.html">
+          Slider Effect03 - jQuery
+        </a>
+      </h1>
+      <p>
+        이미지 슬라이드 - 좌로 넘기기(연속적으로)
+      </p>
+    </div>
+
+    <div class="info right">
+      <ul>
+        <li>
+          <a href="Slider%20Effect01-1.html">1</a>
+        </li>
+        <li>
+          <a href="Slider%20Effect02-1.html">2</a>
+        </li>
+        <li>
+          <a href="Slider%20Effect03-1.html">3</a>
+        </li>
+        <li>
+          <a href="Slider%20Effect04-1.html">4</a>
+        </li>
+        <li>
+          <a href="Slider%20Effect05-1.html">5</a>
+        </li>
+        <li>
+          <a href="Slider%20Effect06-1.html">6</a>
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <a href="Slider%20Effect01.html">1</a>
+        </li>
+        <li>
+          <a href="Slider%20Effect02.html">2</a>
+        </li>
+        <li class="active">
+          <a href="Slider%20Effect03.html">3</a>
+        </li>
+        <li>
+          <a href="Slider%20Effect04.html">4</a>
+        </li>
+        <li>
+          <a href="Slider%20Effect05.html">5</a>
+        </li>
+        <li>
+          <a href="Slider%20Effect06.html">6</a>
+        </li>
+      </ul>
+    </div>
+    <!-- //info -->
+    
+  <!-- script -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script>
+    const sliderWrap = $(".slider-wrap");
+    const sliderImg = $(".slider-img");
+    const slider = $(".slider");
+
+    let currentIndex = 0;
+
+    setInterval(function () {
+      sliderImg.animate({ left: "-1000px" }, 400, function () {
+        $(".slider:first-child").appendTo(sliderImg);
+        sliderImg.css("left", "");
+      });
+    }, 3000);
+  </script>
+  <!-- //script -->
+    
+</body>
+</html>
