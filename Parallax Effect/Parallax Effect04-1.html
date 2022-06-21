@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Parallax Effect04 - JQuery</title>
+  <title>Parallax Effect04-1 - JavaScript</title>
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100&display=swap" rel="stylesheet">
   <style>
     @font-face {
@@ -306,7 +306,7 @@
  
   <header id="paraHeader">
     <h1>
-      Parallax Effect04 - jQuery
+      Parallax Effect04 - javascript
     </h1>
     <p>
       패럴렉스 스크롤링 효과 - 숨김 메뉴2
@@ -517,7 +517,7 @@
         <li>
           <a href="Parallax Effect03.html">3</a>
         </li>
-        <li class="active">
+        <li>
           <a href="Parallax Effect04.html">4</a>
         </li>
         <li>
@@ -548,7 +548,7 @@
         <li>
           <a href="Parallax Effect03-1.html">3</a>
         </li>
-        <li>
+        <li class="active">
           <a href="Parallax Effect04-1.html">4</a>
         </li>
         <li>
@@ -569,56 +569,56 @@
   <!-- //footer -->
   
   <!-- script -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
   <script>
-    $(".paraNav ul li").click(function(e){
-      e.preventDefault();
-      let target = $(this);
-      let index = target.index();
-      let section = $(".content__item").eq(index);
-      let offset = section.offset().top;
-      $("html, body").animate({scrollTop: offset}, 400, "easeInOutCirc");
+    document.querySelectorAll(".paraNav ul li a").forEach(elem => {
+      elem.addEventListener("click", (e) => {
+        e.preventDefault();
+        document.querySelector(elem.getAttribute("href")).scrollIntoView({
+          behavior: "smooth"
+        });
+      })
     });
     
     let nowScrollTop;
     let lastScrollTop = 0;
     
-    $(window).scroll(function(){
-      nowScrollTop = true;
-      
-      setInterval(function(){
-        if(nowScrollTop) {
-          nowScrollTop = false;
-          hasScroll();
-        }
-      },1000);
-    });
-    
     function hasScroll(){
-      let scrollTop = $(this).scrollTop();
+      let scrollTop = document.documentElement.scrollTop || window.scrollY || window.pageYOffset;
       
-      if(scrollTop > lastScrollTop) {
-        $(".paraNav").addClass("hide");
+      if(scrollTop > lastScrollTop){
+        document.querySelector(".paraNav").classList.add("hide");
       } else {
-        $(".paraNav").removeClass("hide");
+        document.querySelector(".paraNav").classList.remove("hide");
       }
       
       lastScrollTop = scrollTop;
       
-      console.log("scrollTop : " + parseInt(scrollTop));
-      console.log("lastScrollTop : " + parseInt(lastScrollTop));
-      
       // output
-      $(".paraScroll span").text(parseInt(scrollTop));
-     
+      document.querySelector(".paraScroll span").innerText = parseInt(scrollTop);
+      
       // menu
-      $(".content__item").each(function(index){
-        if( scrollTop >= $(".content__item").eq(index).offset().top - 2 ){
-          $(".paraNav ul li").eq(index).addClass("active").siblings().removeClass("active");
+      document.querySelectorAll(".content__item").forEach((item, index) => {
+        if(scrollTop >= item.offsetTop - 2){
+          document.querySelectorAll(".paraNav ul li").forEach(li => {
+            li.classList.remove("active");
+          })
+          document.querySelector(".paraNav ul li:nth-child("+(index+1)+")").classList.add("active");
         }
-      })
+      });
     }
+    
+    function scrollProgress(){
+      nowScrollTop = true;
+      
+      setTimeout(() => {
+        if(nowScrollTop) {
+          nowScrollTop = false;
+          hasScroll();
+        }
+      },500);
+    }
+    
+    window.addEventListener("scroll", scrollProgress);
   </script>
   <!-- //script -->
   
